@@ -1,13 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const cors = require('cors');
 
+app.use(cors());
+app.use(express.json());
 app.use(bodyParser.json());
 
 const userInfo = {
-    user_id: "john_doe_17091999",
-    email: "john@xyz.com",
-    roll_number: "ABCD123"
+    user_id: "Shantanu_Aditya_21BCE3112", // Adjusted format to match example
+    email: "shantanuaditya47@gmail.com",
+    roll_number: "21BC3112"
 };
 
 // POST /bfhl
@@ -45,6 +48,7 @@ app.post('/bfhl', (req, res) => {
             highest_lowercase_alphabet: highestLowercaseAlphabet ? [highestLowercaseAlphabet] : []
         });
     } catch (error) {
+        console.error('Error handling POST request:', error); // Added logging
         res.status(400).json({ is_success: false, error: error.message });
     }
 });
